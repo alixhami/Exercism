@@ -15,7 +15,7 @@ class Hamming
       end
     end
 
-    return distance
+    distance
 
   end
 
