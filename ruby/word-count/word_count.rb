@@ -1,20 +1,11 @@
 class Phrase
 
   def initialize(phrase)
-    @phrase = phrase.downcase.gsub(/[^\w']/, " ")
+    @words = phrase.downcase.scan(/\b[^\s,]+\b/).map
   end
 
   def word_count
-    count = {}
-    @phrase.split(' ').each do |i|
-      i = i[1..-2] if i[0]=="'" && i[-1]=="'"
-      if count.include? i
-        count[i] += 1
-      else
-        count[i] = 1
-      end
-    end
-    count
+    Hash.new(0).tap { |h| @words.each { |word| h[word] += 1 } }
   end
 
 end
