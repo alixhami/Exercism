@@ -5,18 +5,9 @@ end
 class Hamming
 
   def self.compute(a,b)
-    distance = 0
+    raise ArgumentError if a.length != b.length
 
-    if a.length != b.length
-      raise(ArgumentError)
-    else
-      a.length.times do |i|
-  	     distance += 1 if a[i] != b[i]
-      end
-    end
-
-    distance
-
+    (0...(a.length)).count { |i| a[i] != b[i] }
   end
 
 end
