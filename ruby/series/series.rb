@@ -5,6 +5,6 @@ class Series
 
   def slices(length)
     raise ArgumentError if length > @num_string.length
-    Array.new(0).tap { |a| (0..(@num_string.length-length)).each { |index| a << @num_string[index...index+length]}}
+    (0..@num_string.length-length).map { |i| @num_string[i...i+length] }
   end
 end
