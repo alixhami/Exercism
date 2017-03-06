@@ -1,9 +1,7 @@
 class Array
 
-  def accumulate(proc=nil)
-    result = []
-    self.each { |i| proc ? result << proc.call(i) : result << yield(i) }
-    result
+  def accumulate
+    each_with_object([]) { |item, results| results << yield(item) }
   end
 
 end
