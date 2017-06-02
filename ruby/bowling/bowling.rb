@@ -15,14 +15,13 @@ class Game
     @frames[@current] << pins
     @throws_remaining_in_frame -= 1
 
-    if (spare?(@frames[@current]) && @current == 9) || (strike?(@frames[@current]) && [9, 10].include?(@current))
-      # adds a bonus frame if the 10th frame is a strike or spare
-      # or adds a second bonus frame if the 10th & 11th frames are strikes
+    # adds a bonus frame if the 10th frame is a strike or spare
+    # or adds a second bonus frame if the 10th & 11th frames are strikes
+    if (new_frame_total == 10 && @current == 9) || (@frames[9..10] == [[10],[10]] && @current == 10)
       @frames_remaining += 1
-    end
 
     # ends game after last throw of bonus round
-    if @current == 10 && !strike?(@frames[9]) || @current == 11
+    elsif (@current == 10 && !strike?(@frames[9])) || @current == 11
       @frames_remaining = 0
     end
 
