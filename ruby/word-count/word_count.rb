@@ -5,7 +5,7 @@ class Phrase
   end
 
   def word_count
-    Hash.new(0).tap { |h| @words.each { |word| h[word] += 1 } }
+    @words.uniq.map { |word| [word, @words.count(word)] }.to_h
   end
 
 end
