@@ -1,12 +1,16 @@
 class Raindrops
+  SOUND_FACTORS = {
+    'Pling' => 3,
+    'Plang' => 5,
+    'Plong' => 7
+  }
 
   def self.convert(number)
-    sound = ''
-    sound += 'Pling' if number % 3 == 0
-    sound += 'Plang' if number % 5 == 0
-    sound += 'Plong' if number % 7 == 0
-    sound = number.to_s if sound == ''
-    sound
+    phrase = SOUND_FACTORS.select { |sound, factor|
+      number % factor == 0
+    }.keys.join
+
+    phrase.empty? ? number.to_s : phrase
   end
 
 end
