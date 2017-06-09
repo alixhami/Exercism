@@ -9,7 +9,7 @@ class Matrix
   private
   def string_to_rows(matrix_string)
     matrix_string.split("\n").map { |row_string|
-      row_string.split(' ').map { |num| num.to_i }
+      row_string.split(' ').map(&:to_i)
     }
   end
 end
