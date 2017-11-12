@@ -1,8 +1,5 @@
-import math
-
-
 class Allergies(object):
-    ALL_ALLERGENS = [
+    ALLERGENS = [
         'eggs',
         'peanuts',
         'shellfish',
@@ -17,20 +14,9 @@ class Allergies(object):
         self.score = score
 
     def is_allergic_to(self, item):
-        return item in self.lst
+        return 1 << self.ALLERGENS.index(item) & self.score != 0
 
     @property
     def lst(self):
-        temp_score = self.score
-        allergens = []
-
-        while temp_score > 1:
-            current_score = int(math.log(temp_score, 2))
-            if current_score < len(self.ALL_ALLERGENS):
-                allergens.append(self.ALL_ALLERGENS[current_score])
-            temp_score -= 2 ** current_score
-
-        if temp_score == 1:
-            allergens.append('eggs')
-
-        return allergens
+        return [allergen for allergen in self.ALLERGENS
+                if self.is_allergic_to(allergen)]
